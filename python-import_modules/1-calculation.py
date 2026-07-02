@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Imports functions from calculator_1 and performs calculations"""
+"""Imports and uses functions from another module to perform calculations"""
 from calculator_1 import add, sub, mul, div
 
 if __name__ == "__main__":
