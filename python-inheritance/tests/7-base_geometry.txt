@@ -1,28 +1,56 @@
 The ``7-base_geometry`` module
 ===============================
 
-Using ``integer_validator``
-----------------------------
-
 First we import BaseGeometry:
 
     >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
-
-Now let's test valid values:
-
     >>> bg = BaseGeometry()
+
+Using ``area()``
+------------------
+
+``area()`` is not implemented in ``BaseGeometry`` and must raise an
+``Exception``:
+
+    >>> bg.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
+
+    >>> try:
+    ...     bg.area()
+    ... except Exception as e:
+    ...     print("[{}] {}".format(e.__class__.__name__, e))
+    [Exception] area() is not implemented
+
+Using ``integer_validator()``
+-------------------------------
+
+Valid values return ``None`` and raise nothing:
+
     >>> bg.integer_validator("my_int", 12)
     >>> bg.integer_validator("width", 89)
 
-Now let's test invalid values:
+A non-integer value raises a ``TypeError``:
 
     >>> bg.integer_validator("name", "John")
     Traceback (most recent call last):
     TypeError: name must be an integer
 
+Using ``integer_validator("age")``
+-------------------------------------
+
+A value less than or equal to 0, using the name ``"age"``, raises a
+``ValueError``:
+
     >>> bg.integer_validator("age", 0)
     Traceback (most recent call last):
     ValueError: age must be greater than 0
+
+    >>> bg.integer_validator("age", -12)
+    Traceback (most recent call last):
+    ValueError: age must be greater than 0
+
+Another negative value example with a different name:
 
     >>> bg.integer_validator("distance", -4)
     Traceback (most recent call last):
