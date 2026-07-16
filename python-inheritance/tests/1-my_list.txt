@@ -25,3 +25,28 @@ The original list order is left untouched:
 
     >>> print(my_list)
     [1, 4, 2, 3, 5]
+
+Now let's test with negative numbers, unsorted:
+
+    >>> neg_list = MyList()
+    >>> neg_list.append(3)
+    >>> neg_list.append(-1)
+    >>> neg_list.append(0)
+    >>> neg_list.append(-5)
+    >>> neg_list.append(2)
+    >>> print(neg_list)
+    [3, -1, 0, -5, 2]
+    >>> neg_list.print_sorted()
+    [-5, -1, 0, 2, 3]
+    >>> print(neg_list)
+    [3, -1, 0, -5, 2]
+
+Now let's test with an empty list:
+
+    >>> empty_list = MyList()
+    >>> print(empty_list)
+    []
+    >>> empty_list.print_sorted()
+    []
+    >>> print(empty_list)
+    []
