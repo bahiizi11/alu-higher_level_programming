@@ -41,8 +41,24 @@ A non-integer value raises a ``TypeError``:
     Traceback (most recent call last):
     TypeError: name must be an integer
 
+Calling ``integer_validator()`` with no arguments at all raises a
+``TypeError`` for the missing required arguments (the exact wording
+of this particular error comes from Python itself and can vary
+slightly between versions, so only the exception type is checked):
+
+    >>> bg.integer_validator() #doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
 Using ``integer_validator("age")``
 -------------------------------------
+
+Calling ``integer_validator("age")`` with only the ``name`` argument
+and no ``value`` also raises a ``TypeError``:
+
+    >>> bg.integer_validator("age") #doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
 
 Testing ``integer_validator("age", 1)`` - a valid positive integer,
 raises nothing:
