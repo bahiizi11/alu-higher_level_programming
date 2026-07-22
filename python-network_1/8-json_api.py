@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-"""Takes in a letter and sends a POST request to
-http://0.0.0.0:5000/search_user with the letter as a parameter"""
+"""Sends a POST request to search_user with a letter as parameter."""
 import sys
 import requests
 
 if __name__ == "__main__":
     letter = sys.argv[1] if len(sys.argv) > 1 else ""
-    response = requests.post("http://0.0.0.0:5000/search_user",
-                              data={'q': letter})
+    response = requests.post(
+        "http://0.0.0.0:5000/search_user", data={'q': letter})
     try:
         json_body = response.json()
     except ValueError:
@@ -16,5 +15,5 @@ if __name__ == "__main__":
         if not json_body:
             print("No result")
         else:
-            print("[{}] {}".format(json_body.get('id'),
-                                    json_body.get('name')))
+            print("[{}] {}".format(
+                json_body.get('id'), json_body.get('name')))
