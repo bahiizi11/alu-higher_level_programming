@@ -1,0 +1,63 @@
+The ``5-text_indentation`` module
+====================================
+
+Using ``text_indentation``
+-----------------------------
+
+Import the function:
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Basic usage with a period:
+
+    >>> text_indentation("Hello world.")
+    Hello world.
+    <BLANKLINE>
+
+With a question mark:
+
+    >>> text_indentation("How are you?")
+    How are you?
+    <BLANKLINE>
+
+With a colon:
+
+    >>> text_indentation("Note: read carefully")
+    Note:
+    <BLANKLINE>
+    read carefully
+
+Multiple punctuation marks in one string:
+
+    >>> text_indentation("Hi. Bye? Ok: done.")
+    Hi.
+    <BLANKLINE>
+    Bye?
+    <BLANKLINE>
+    Ok:
+    <BLANKLINE>
+    done.
+    <BLANKLINE>
+
+No punctuation at all:
+
+    >>> text_indentation("no punctuation here")
+    no punctuation here
+
+Empty string prints nothing:
+
+    >>> text_indentation("")
+
+Type errors:
+
+    >>> text_indentation(12)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(["a", "b"])
+    Traceback (most recent call last):
+    TypeError: text must be a string
