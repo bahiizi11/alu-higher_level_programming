@@ -2,6 +2,7 @@
 """Unittest module for the Square class."""
 import unittest
 import io
+import os
 import sys
 from models.base import Base
 from models.rectangle import Rectangle
@@ -84,10 +85,20 @@ class TestSquare_validation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Square(5, -1)
 
+    def test_x_not_int(self):
+        """Test that a non-integer x raises TypeError."""
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, "2")
+
     def test_y_negative(self):
         """Test that a negative y raises ValueError."""
         with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Square(5, 0, -1)
+
+    def test_y_not_int(self):
+        """Test that a non-integer y raises TypeError."""
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 2, "3")
 
 
 class TestSquare_size(unittest.TestCase):
@@ -182,6 +193,27 @@ class TestSquare_update(unittest.TestCase):
         s = Square(5, 0, 0, 1)
         s.update()
         self.assertEqual(str(s), "[Square] (1) 0/0 - 5")
+
+
+class TestSquare_save_to_file(unittest.TestCase):
+    """Unittests for testing save_to_file method of the Square class."""
+
+    def tearDown(self):
+        """Remove created files after each test."""
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+    def test_save_to_file_none(self):
+        """Test that save_to_file(None) saves an empty list."""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_save_to_file_empty_list(self):
+        """Test that save_to_file([]) saves an empty list."""
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
 
 
 class TestSquare_to_dictionary(unittest.TestCase):
