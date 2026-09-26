@@ -1,0 +1,7 @@
+{
+  "name": "javascript-web_jquery",
+  "version": "1.0.0",
+  "semistandard": {
+    "globals": ["$"]
+  }
+}
